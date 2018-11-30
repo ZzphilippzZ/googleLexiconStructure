@@ -6,11 +6,13 @@ class Lexicon
   private char[] wordArray;
   private int sizeFactor = 15;
   private int size = -1;
+  private int sizeRemaining = -1;
   private int insertPosition = 0;
 
   public Lexicon(int size)
   {
     this.size = size;
+    this.sizeRemaining = size;
 
     hashTable = new int[size];
     wordArray = new char[sizeFactor*size];
@@ -19,36 +21,31 @@ class Lexicon
     Arrays.fill(wordArray, ' ');
   }
 
-  public boolean empty()
+  public boolean isEmpty()
   {
-    int hashTableLength = hashTable.length;
-
-    for(int i = 0; i < hashTableLength; i++)
+    if(sizeRemaining == size)
     {
-      if(hashTable[i] != -1)
-      {
-        return false;
-      }
+      return true;
     }
-    return true;
+    return false;
   }
 
-  public boolean full()
+  public boolean isFull()
   {
-    int hashTableLength = hashTable.length;
-
-    for(int i = 0; i < hashTableLength; i++)
+    if(sizeRemaining == 0 || wordArray[wordArray.length - 1] != ' ')
     {
-      if(hashTable[i] < 0 || wordArray[wordArray.length - 1] == ' ')
-      {
-        return false;
-      }
+      return true;
     }
-    return true;
+    return false;
   }
 
   public int insert(String word)
   {
+    if(this.isFull() || (insertPosition + word.length() + 1) >= wordArray.length)
+    {
+      this.doubleSize();
+    }
+
     int hPrime = hPrime(size, word);
     int insertIndex = -1;
 
@@ -66,9 +63,14 @@ class Lexicon
         }
         wordArray[insertPosition++] = '\\';
 
+        sizeRemaining--;
         return insertIndex;
       }
       i++;
+      if(i == size)
+      {
+        this.doubleSize();
+      }
     }
     return -1;
   }
@@ -104,17 +106,22 @@ class Lexicon
 
   public int delete(String word)
   {
-    int hashTableIndexOfWord = search(word);
-    if(hashTableIndexOfWord != -1)
+    if(!this.isEmpty())
     {
-      int startingIndex = hashTable[hashTableIndexOfWord];
-      while(wordArray[startingIndex] != '\\')
+      int hashTableIndexOfWord = search(word);
+      if(hashTableIndexOfWord != -1)
       {
-        wordArray[startingIndex++] = '*';
+        int startingIndex = hashTable[hashTableIndexOfWord];
+        while(wordArray[startingIndex] != '\\')
+        {
+          wordArray[startingIndex++] = '*';
+        }
+        hashTable[hashTableIndexOfWord] = -2;
+        sizeRemaining++;
       }
-      hashTable[hashTableIndexOfWord] = -2;
+      return hashTableIndexOfWord;
     }
-    return hashTableIndexOfWord;
+    return -1;
   }
 
   private int hPrime(int modInt, String word)
@@ -155,10 +162,12 @@ class Lexicon
     this.wordArray = newL.wordArray;
     this.size = newL.size;
     this.insertPosition = newL.insertPosition;
+    this.sizeRemaining = newL.sizeRemaining;
   }
 
   public void debugPrint()
   {
+    System.out.println("arraySize: " +wordArray.length+ " insertPosition: " +insertPosition);
     System.out.print("T\tA: ");
 
     for(int i = 0; i < wordArray.length; i++)
