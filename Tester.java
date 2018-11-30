@@ -19,6 +19,7 @@ class Tester
     System.out.println(l.delete("jerry"));
     l.insert("jerry");
     l.insert("tom");
+    System.out.println(l.delete("jerry"));
     l.insert("tom");
     l.debugPrint();
     l.doubleSize();

@@ -30,7 +30,20 @@ class Lexicon
         return false;
       }
     }
+    return true;
+  }
 
+  public boolean full()
+  {
+    int hashTableLength = hashTable.length;
+
+    for(int i = 0; i < hashTableLength; i++)
+    {
+      if(hashTable[i] < 0 || wordArray[wordArray.length - 1] == ' ')
+      {
+        return false;
+      }
+    }
     return true;
   }
 
@@ -148,7 +161,6 @@ class Lexicon
   {
     System.out.print("T\tA: ");
 
-    //String words = "";
     for(int i = 0; i < wordArray.length; i++)
     {
       System.out.print(wordArray[i]);
