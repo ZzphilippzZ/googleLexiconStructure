@@ -4,7 +4,13 @@ class Tester
 {
   public static void main(String args[])
   {
-    batch("test.txt");
+    if(args.length > 0)
+    {
+      for(int i = 0; i < args.length; i++)
+      {
+        batch(args[i]);
+      }
+    }
   }
 
   public static void batch(String filename)
@@ -58,6 +64,7 @@ class Tester
             System.out.println(output);
             break;
           case 13:
+            System.out.println();
             l.debugPrint();
             break;
           case 14:
