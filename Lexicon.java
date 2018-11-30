@@ -34,7 +34,7 @@ class Lexicon
     return true;
   }
 
-  public void insert(String word)
+  public int insert(String word)
   {
     int hPrime = hPrime(size, word);
     int insertIndex = -1;
@@ -43,7 +43,7 @@ class Lexicon
     while(i < size)
     {
       insertIndex = (hPrime + i*i) % size;
-      if(hashTable[insertIndex] == -1)
+      if(hashTable[insertIndex] < 0)
       {
         hashTable[insertIndex] = insertPosition;
 
@@ -53,10 +53,11 @@ class Lexicon
         }
         wordArray[insertPosition++] = '\\';
 
-        break;
+        return insertIndex;
       }
       i++;
     }
+    return -1;
   }
 
   //returns hashTableIndex if found or -1 if not found
@@ -67,12 +68,12 @@ class Lexicon
     int startingIndex = -1;
 
     int i = 0;
-    while(i < size)
+    do
     {
       insertIndex = (hPrime + i*i) % size;
       startingIndex = hashTable[insertIndex];
 
-      if(startingIndex != -1 && wordArray[startingIndex + word.length()] == '\\')
+      if(startingIndex > -1 && wordArray[startingIndex + word.length()] == '\\')
       {
           for(int j = 0; j < word.length(); j++)
           {
@@ -84,7 +85,7 @@ class Lexicon
           }
       }
       i++;
-    }
+    } while(i < size && startingIndex != -1);
     return -1;
   }
 
@@ -98,7 +99,7 @@ class Lexicon
       {
         wordArray[startingIndex++] = '*';
       }
-      hashTable[hashTableIndexOfWord] = -1;
+      hashTable[hashTableIndexOfWord] = -2;
     }
     return hashTableIndexOfWord;
   }
@@ -133,7 +134,8 @@ class Lexicon
 
     for(int i = 0; i < hashTable.length; i++)
     {
-      System.out.println(i+ ": " +(hashTable[i] == -1 ? "" : hashTable[i]));
+      //System.out.println(i+ ": " +(hashTable[i] == -1 ? "" : hashTable[i]));
+      System.out.println(i+ ": " +hashTable[i]);
     }
     System.out.println();
   }

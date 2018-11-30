@@ -17,6 +17,12 @@ class Tester
     System.out.println(l.delete("aley"));
     System.out.println(l.delete("alex"));
     System.out.println(l.delete("jerry"));
+    l.insert("jerry");
+    l.insert("tom");
+    l.insert("tom");
+    System.out.println(l.delete("jerry"));
+    System.out.println(l.delete("tom"));
+    System.out.println(l.delete("tom"));
     l.debugPrint();
   }
 }
