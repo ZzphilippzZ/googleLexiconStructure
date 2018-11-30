@@ -7,7 +7,7 @@ class Tester
     l.insert("alex");
     l.insert("tom");
     l.insert("jerry");
-    l.debugPrint();
+    //l.debugPrint();
 
     System.out.println(l.search("alex"));
     System.out.println(l.search("tom"));
@@ -20,9 +20,8 @@ class Tester
     l.insert("jerry");
     l.insert("tom");
     l.insert("tom");
-    System.out.println(l.delete("jerry"));
-    System.out.println(l.delete("tom"));
-    System.out.println(l.delete("tom"));
+    l.debugPrint();
+    l.doubleSize();
     l.debugPrint();
   }
 }

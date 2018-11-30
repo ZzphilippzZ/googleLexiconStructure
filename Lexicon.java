@@ -121,11 +121,34 @@ class Lexicon
     return sum;
   }
 
+  public void doubleSize()
+  {
+    Lexicon newL = new Lexicon(size * 2);
+
+    for(int i = 0; i < hashTable.length; i++)
+    {
+      int startingIndex = hashTable[i];
+      if(startingIndex > -1)
+      {
+        String word = "";
+        while(wordArray[startingIndex] != '\\')
+        {
+          word += wordArray[startingIndex++];
+        }
+        newL.insert(word);
+      }
+    }
+    this.hashTable = newL.hashTable;
+    this.wordArray = newL.wordArray;
+    this.size = newL.size;
+    this.insertPosition = newL.insertPosition;
+  }
+
   public void debugPrint()
   {
     System.out.print("T\tA: ");
 
-    String words = "";
+    //String words = "";
     for(int i = 0; i < wordArray.length; i++)
     {
       System.out.print(wordArray[i]);
