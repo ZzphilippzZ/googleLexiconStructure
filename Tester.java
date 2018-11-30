@@ -4,7 +4,7 @@ class Tester
   {
     Lexicon l = new Lexicon (1);
 
-    l.insert("alex");
+    l.insert("thisisareallylongwordthatisntreallyawordbutjustfortesting");
     l.debugPrint();
     l.delete("alex");
     l.debugPrint();
@@ -28,6 +28,7 @@ class Tester
     l.insert("alex");
     l.insert("tom");
     l.insert("tom");
+    l.delete("thisisareallylongwordthatisntreallyawordbutjustfortesting");
 
     l.debugPrint();
     System.out.println(l.search("tom"));

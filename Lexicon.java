@@ -41,7 +41,7 @@ class Lexicon
 
   public int insert(String word)
   {
-    if(this.isFull() || (insertPosition + word.length() + 1) >= wordArray.length)
+    while(this.isFull() || (insertPosition + word.length() + 1) >= wordArray.length)
     {
       this.doubleSize();
     }
