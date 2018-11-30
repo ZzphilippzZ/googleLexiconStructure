@@ -167,7 +167,6 @@ class Lexicon
 
   public void debugPrint()
   {
-    System.out.println("arraySize: " +wordArray.length+ " insertPosition: " +insertPosition);
     System.out.print("T\tA: ");
 
     for(int i = 0; i < wordArray.length; i++)
@@ -178,8 +177,8 @@ class Lexicon
 
     for(int i = 0; i < hashTable.length; i++)
     {
-      //System.out.println(i+ ": " +(hashTable[i] == -1 ? "" : hashTable[i]));
-      System.out.println(i+ ": " +hashTable[i]);
+      System.out.println(i+ ": " +(hashTable[i] < 0 ? "" : hashTable[i]));
+      //System.out.println(i+ ": " +hashTable[i]);
     }
     System.out.println();
   }
