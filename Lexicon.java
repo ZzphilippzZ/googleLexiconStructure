@@ -88,7 +88,7 @@ class Lexicon
       insertIndex = (hPrime + i*i) % size;
       startingIndex = hashTable[insertIndex];
 
-      if(startingIndex > -1 && wordArray[startingIndex + word.length()] == '\\')
+      if(!((startingIndex + word.length() + 1) >= wordArray.length) && startingIndex > -1 && wordArray[startingIndex + word.length()] == '\\')
       {
           for(int j = 0; j < word.length(); j++)
           {
