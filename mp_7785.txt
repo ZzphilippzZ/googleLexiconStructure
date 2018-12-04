@@ -2,10 +2,10 @@ Philipp Adams cs435 7785 mp
 
 To run Lexicon mini project
 javac Hashing7785.java
-java Hashing7785 file
+java Hashing7785      followed by arguments specified in mini project handout
 will not run if first command in file is not 14
 
 To run PageRank mini project
 javac PageRank7785.java
-java PageRank7785 followed by arguments specified in mini project handout
+java PageRank7785     followed by arguments specified in mini project handout
 Will throw a warning when compiled but will still run
