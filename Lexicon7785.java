@@ -1,7 +1,7 @@
 // Philipp Adams cs435 7785 mp
 import java.util.Arrays;
 
-class Lexicon
+class Lexicon7785
 {
   private int[] hashTable;
   private char[] wordArray;
@@ -10,7 +10,7 @@ class Lexicon
   private int sizeRemaining = -1;
   private int insertPosition = 0;
 
-  public Lexicon(int size)
+  public Lexicon7785(int size)
   {
     this.size = size;
     this.sizeRemaining = size;
@@ -144,7 +144,7 @@ class Lexicon
 
   public void doubleSize()
   {
-    Lexicon newL = new Lexicon(size * 2);
+    Lexicon7785 newL = new Lexicon7785(size * 2);
 
     for(int i = 0; i < hashTable.length; i++)
     {

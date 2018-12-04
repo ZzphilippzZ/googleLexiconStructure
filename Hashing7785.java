@@ -1,7 +1,7 @@
 // Philipp Adams cs435 7785 mp
 import java.io.*;
 
-class Tester
+class Hashing7785
 {
   public static void main(String args[])
   {
@@ -20,7 +20,7 @@ class Tester
     {
       String currentLine = "";
       String[] lineTokens;
-      Lexicon l = null;
+      Lexicon7785 l = null;
 
       while((currentLine = br.readLine()) != null)
       {
