@@ -69,7 +69,7 @@ class Hashing7785
             l.debugPrint();
             break;
           case 14:
-            l = new Lexicon(Integer.parseInt(token2));
+            l = new Lexicon7785(Integer.parseInt(token2));
             break;
           default:
             System.out.println("Case " +operation+ " does not exist");
